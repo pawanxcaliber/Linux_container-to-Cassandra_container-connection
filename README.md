@@ -61,39 +61,35 @@ Start the CQLSH tool:
 ```bash
 cqlsh
 ```
-
-Creating a Keyspace and Table
-
-Create a keyspace:
+Switch to the mykeyspace keyspace:
 
 ```SQL
-CREATE KEYSPACE mykeyspace WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
+USE mykeyspace;
 ```
 
-Create a table:
+Run a SELECT query to retrieve the data:
 
 ```SQL
-CREATE TABLE mykeyspace.mytable (id int, name text, PRIMARY KEY (id));
+SELECT * FROM mytable;
 ```
 
-Inserting Data
-
-Insert some sample data:
-
-```SQL
-INSERT INTO mykeyspace.mytable (id, name) VALUES (1, 'John Doe');
-INSERT INTO mykeyspace.mytable (id, name) VALUES (2, 'Jane Doe');
-```
-
-Querying Data
-Query the data:
+This should display the data you inserted earlier:
 
 ```
-SQL
-SELECT * FROM mykeyspace.mytable;
+ id | name
+----+----------
+  1 | John Doe
+  2 | Jane Doe
 ```
 
-This should display the inserted data.
+You can exit the cqlsh tool by typing EXIT or QUIT.
+
+Alternatively, you can also use the cqlsh command with the -e option to execute a query directly:
+
+```bash
+cqlsh -e "SELECT * FROM mykeyspace.mytable;"
+```
+This should display the data.
 
 ### Python Application
 ------------------
