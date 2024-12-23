@@ -1,0 +1,23 @@
+version: '3'
+services:
+  cassandra:
+    build: ./cassandra
+    volumes:
+      - cassandra-data:/var/lib/cassandra
+    ports:
+      - "9042:9042"
+
+  python:
+    build: ./python
+    volumes:
+      - python-data:/app/data
+    depends_on:
+      - cassandra
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+
+volumes:
+  cassandra-data:
+  python-data:
